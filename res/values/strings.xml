@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoRev</string>
+    <string name="button">Получить данные</string>
+    <string name="button2">Получить JSON данные</string>
+    <string name="ok">Окай</string>
+    <string name="gpsOff">Сначала включите GPS</string>
+    <string name="problems">Аппаратные проблемы</string>
+    <string name="clipboard">Копировать инфу</string>
+    <string name="copied">Скопировано!</string>
+    <string name="about">О программе</string>
+    <string name="aboutmsg">GeoReverse by maximko\n[xmpp/mail]: me@maximko.org\nGeodata by OpenStreetMap.org under CC-BY-SA 2.0</string>
+</resources>
