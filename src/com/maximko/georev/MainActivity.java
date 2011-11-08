@@ -132,7 +132,8 @@ public class MainActivity extends Activity
 
         @Override
         protected void onPreExecute() {
-            dialog = ProgressDialog.show(MainActivity.this, "Подождите...", "Загружаются данные", true);
+            dialog = ProgressDialog.show(MainActivity.this, MainActivity.this.getString(R.string.wait),
+                                                            MainActivity.this.getString(R.string.loading), true);
         }
 
         @Override
@@ -152,7 +153,8 @@ public class MainActivity extends Activity
 
         @Override
         protected void onPreExecute() {
-            dialog = ProgressDialog.show(MainActivity.this, "Подождите...", "Загружаются JSON данные", true);
+            dialog = ProgressDialog.show(MainActivity.this, MainActivity.this.getString(R.string.wait),
+                                                            MainActivity.this.getString(R.string.jsonloading), true);
         }
 
         @Override
