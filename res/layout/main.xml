@@ -4,32 +4,49 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<Button
-    android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/button"
+            android:onClick="DD"
+            android:layout_centerInParent="true"
+            />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/button2"
+            android:onClick="DJD"
+            android:layout_centerInParent="true"
+            />
+    </LinearLayout>
+    <ScrollView
+    android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    android:text="@string/button"
-    android:onClick="DD"
-    android:layout_centerInParent="true"
-    />
-<Button
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:text="@string/button2"
-    android:onClick="DJD"
-    android:layout_centerInParent="true"
-    />
-<TextView
-    android:id="@+id/coordinatesV"
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:textSize="15px"
-    android:text="Координаты устройства недоступны."
-    />
-<TextView
-    android:id="@+id/dataV"
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:textSize="15px"
-    />
+    >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/coordinatesV"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:textSize="15px"
+                android:text="Координаты устройства недоступны."
+                />
+            <TextView
+                android:id="@+id/dataV"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:textSize="15px"
+                />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 
