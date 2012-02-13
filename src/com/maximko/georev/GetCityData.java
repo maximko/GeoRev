@@ -23,11 +23,11 @@ public class GetCityData {
                                                     + lat + "&lon=" + lon + "&zoom=18&addressdetails=1");
             HttpResponse response = httpclient.execute(httpget);
             in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            StringBuffer sb = new StringBuffer("");
+            StringBuilder sb = new StringBuilder("");
             String line = "";
             String NL = System.getProperty("line.separator");
             while ((line = in.readLine()) != null) {
-                sb.append(line + NL);
+                sb.append(line).append(NL);
             }
             in.close();
             data = sb.toString();
@@ -44,27 +44,30 @@ public class GetCityData {
             StringBuilder builder = new StringBuilder("");
             JSONObject jsonObj = new JSONObject(jsonData);
             JSONObject addressObj = jsonObj.getJSONObject("address");
-            if (jsonObj.has("lat")) builder.append("Координаты объекта:\nШирота: " + jsonObj.getString("lat") + "\n");
-            if (jsonObj.has("lon")) builder.append("Долгота: " + jsonObj.getString("lon") 
-                                                               + "\n\n" + "Сведения об объекте: \n");
-            if (addressObj.has("country")) builder.append("" + addressObj.getString("country") + "\n");
-            if (addressObj.has("administrative")) builder.append(addressObj.getString("administrative") + "\n");
-            if (addressObj.has("state")) builder.append(addressObj.getString("state") + "\n");
-            if (addressObj.has("state_district")) builder.append(addressObj.getString("state_district") + "\n");
-            if (addressObj.has("county")) builder.append(addressObj.getString("county") + "\n");
-            if (addressObj.has("city")) builder.append(addressObj.getString("city") + "\n");
-            if (addressObj.has("town")) builder.append(addressObj.getString("town") + "\n");
-            if (addressObj.has("suburb")) builder.append(addressObj.getString("suburb") + "\n");
-            if (addressObj.has("postcode")) builder.append("Почтовый индекс: " + addressObj.getString("postcode") + "\n");
-            if (addressObj.has("pedestrian")) builder.append(addressObj.getString("pedestrian") + "\n");
-            if (addressObj.has("road")) builder.append(addressObj.getString("road") + "\n");
-            if (addressObj.has("university")) builder.append("Университет: " + addressObj.getString("university") + "\n");
-            if (addressObj.has("house_number")) builder.append("Дом #" + addressObj.getString("house_number"));
+            if (jsonObj.has("lat")) builder.append("Координаты объекта:\nШирота: ").append(jsonObj.getString("lat")).append("\n");
+            if (jsonObj.has("lon")) builder.append("Долгота: ").append(jsonObj.getString("lon")).append("\n\n" + "Сведения об объекте: \n");
+            if (addressObj.has("country")) builder.append("").append(addressObj.getString("country")).append("\n");
+            if (addressObj.has("administrative")) builder.append(addressObj.getString("administrative")).append("\n");
+            if (addressObj.has("state")) builder.append(addressObj.getString("state")).append("\n");
+            if (addressObj.has("state_district")) builder.append(addressObj.getString("state_district")).append("\n");
+            if (addressObj.has("county")) builder.append(addressObj.getString("county")).append("\n");
+            if (addressObj.has("city")) builder.append(addressObj.getString("city")).append("\n");
+            if (addressObj.has("town")) builder.append(addressObj.getString("town")).append("\n");
+            if (addressObj.has("suburb")) builder.append(addressObj.getString("suburb")).append("\n");
+            if (addressObj.has("postcode")) builder.append("Почтовый индекс: ").append(addressObj.getString("postcode")).append("\n");
+            if (addressObj.has("pedestrian")) builder.append(addressObj.getString("pedestrian")).append("\n");
+            if (addressObj.has("road")) builder.append(addressObj.getString("road")).append("\n");
+            if (addressObj.has("university")) builder.append("Университет: ").append(addressObj.getString("university")).append("\n");
+            if (addressObj.has("house_number")) builder.append("Дом #").append(addressObj.getString("house_number"));
             finalData = builder.toString();
         } catch (JSONException ex) {
             Logger.getLogger(GetCityData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (jsonData == null) {
+            finalData = "Ошибка получения данных";
         }
         return finalData;
     }
 
 }
+

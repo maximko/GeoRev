@@ -13,4 +13,7 @@
     <string name="wait">Подождите...</string>
     <string name="loading">Загрузка данных</string>
     <string name="jsonloading">Загрузка JSON данных</string>
+    <string name="onchanged">Событие onStatusChanged</string>
+    <string name="onprovideren">Провайдер запилен</string>
+    <string name="onproviderdis">Провайдер выпилен</string>
 </resources>

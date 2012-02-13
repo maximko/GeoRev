@@ -17,8 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity
-{
+public class MainActivity extends Activity {
 
     private final int COPY_ID = 1;
     private final int ABOUT_ID = 2;
@@ -36,8 +35,7 @@ public class MainActivity extends Activity
     ProgressDialog dialog;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         dataV = (TextView)findViewById(R.id.dataV);
@@ -86,20 +84,20 @@ public class MainActivity extends Activity
         public void onLocationChanged(Location lctn) {
             latitude = lctn.getLatitude();
             longitude = lctn.getLongitude();
-            coordinatesV.setText("Координаты устройства:\nШирота:" + latitude + "\nДолгота: "
-                                                                   + longitude + "\n");
+            coordinatesV.setText("Координаты устройства:\nШирота: " + latitude + "\nДолгота: "
+                                                                    + longitude + "\n");
         }
 
         public void onStatusChanged(String string, int i, Bundle bundle) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            Toast.makeText(getApplicationContext(), R.string.onchanged, Toast.LENGTH_SHORT).show();
         }
 
         public void onProviderEnabled(String string) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            Toast.makeText(getApplicationContext(), R.string.onprovideren, Toast.LENGTH_SHORT).show();
         }
 
         public void onProviderDisabled(String string) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            Toast.makeText(getApplicationContext(), R.string.onproviderdis, Toast.LENGTH_SHORT).show();
         }
 
     };
@@ -191,4 +189,9 @@ public class MainActivity extends Activity
                 return super.onOptionsItemSelected(item);
         }
     }
+    
+    public void showToast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_LONG);
+    }
+
 }
