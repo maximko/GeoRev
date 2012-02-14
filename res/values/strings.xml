@@ -4,7 +4,9 @@
     <string name="button">Получить данные</string>
     <string name="button2">Получить JSON данные</string>
     <string name="ok">Окай</string>
-    <string name="gpsOff">Сначала включите GPS</string>
+    <string name="no">нет</string>
+    <string name="yea">да</string>
+    <string name="gpsOff">Определение местоположения через GPS/Мобильные сети отключено. Открыть настройки местоположения?</string>
     <string name="problems">Аппаратные проблемы</string>
     <string name="clipboard">Копировать инфу</string>
     <string name="copied">Скопировано!</string>
@@ -16,4 +18,6 @@
     <string name="onchanged">Событие onStatusChanged</string>
     <string name="onprovideren">Провайдер запилен</string>
     <string name="onproviderdis">Провайдер выпилен</string>
+    <string name="providerGPS">Провайдер местоположения: GPS</string>
+    <string name="providerMOBILE">Провайдер местоположения: Мобильные сети</string>
 </resources>

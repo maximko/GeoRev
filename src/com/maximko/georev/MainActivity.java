@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.ClipboardManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ public class MainActivity extends Activity {
 
     TextView dataV;
     TextView coordinatesV;
+    TextView providerV;
     GetCityData gcd;
 
     LocationManager lm;
@@ -40,7 +43,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         dataV = (TextView)findViewById(R.id.dataV);
         coordinatesV = (TextView)findViewById(R.id.coordinatesV);
-        GpsData();
+        providerV = (TextView)findViewById(R.id.providerV);
+        //setLocationProvider();
         gcd = new GetCityData();
     }
 
@@ -59,23 +63,39 @@ public class MainActivity extends Activity {
 
     @Override
     public void onResume() {
-        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            GpsOffDialog();
-        }
-        else {
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, LocLis);
-        }     
         super.onResume();
+        setLocationProvider();
     }
 
-    public void GpsData() {
+    public void setLocationProvider() {
         lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            GpsOffDialog();
-        }
-        else {
+        if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, LocLis);
+            providerV.setText(R.string.providerGPS);
+        }
+        else if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, LocLis);
+            providerV.setText(R.string.providerMOBILE);
+        }
+        else {
+            AlertDialog.Builder noproviders = new AlertDialog.Builder(this);
+            noproviders.setMessage(R.string.gpsOff)
+                       .setCancelable(false)
+                       .setTitle(R.string.problems)
+                       .setPositiveButton(R.string.yea, new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface di, int i) {
+                               di.dismiss();
+                               startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                           }                                            
+                       })
+                       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                               finish();
+                           }    
+                       });
+            noproviders.show();
         }
     }
 
@@ -101,17 +121,6 @@ public class MainActivity extends Activity {
         }
 
     };
-
-    private void GpsOffDialog() {
-        new AlertDialog.Builder(this).setMessage(R.string.gpsOff)
-                                     .setCancelable(false)
-                                     .setTitle(R.string.problems)
-                                     .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                         public void onClick(DialogInterface dialog, int id) {
-                                             finish();
-                                         }
-                                     }).show();
-    }
 
     public void DD(View view) {
         new DisplayData().execute();
@@ -190,8 +199,4 @@ public class MainActivity extends Activity {
         }
     }
     
-    public void showToast(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
-    }
-
 }

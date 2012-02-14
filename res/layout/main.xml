@@ -34,6 +34,13 @@
             android:layout_height="wrap_content"
             >
             <TextView
+                android:id="@+id/providerV"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:textSize="15px"
+                android:text="Получение провайдера местоположения..."
+                />
+            <TextView
                 android:id="@+id/coordinatesV"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
